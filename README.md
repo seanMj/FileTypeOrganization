@@ -1,5 +1,5 @@
-# FileTypeOrganization
-Organizes a filesystem by file type, makes analysis of a system easier for xyz
+# FileTypeOrganization (Runs on Windows And Linux without any changes)
+Organize a filesystem by file type, makes analysis of a system easier for people who need to quickly comb through a system that isn't their own, or people who just want to run a program for fun. 
 
 thought something like this could be used to do analysis of a system visually much easier
 

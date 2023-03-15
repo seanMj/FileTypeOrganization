@@ -10,3 +10,6 @@ thought something like this could be used to do analysis of a system visually mu
 
 
 [Warning, will not work in VS Debug mode... idk why yet]
+
+
+not really done the way i like to write code but im trying to impress a girl with my uniqueness, and i think this is how?

@@ -9,6 +9,7 @@ thought something like this could be used to do analysis of a system visually mu
 - The Program Ends (program runs relatively fast and without hassle. 
 
 To run program in command line: 
+
      FileTypeOrganization <whereToLook> <WhereToSave>
     
      Where To Look is where you want the program to find the files for searching through.

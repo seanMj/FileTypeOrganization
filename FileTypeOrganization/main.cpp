@@ -168,7 +168,6 @@ int main(int* argv, char* argc[])
 	vector<fs::path>* p_extn = &extn;
 	extn = get_extensions(p_files);
 
-	//const fs::path save_location = "C:\\Users\\Lynx\\Documents\\TEST\\";
 	std::string save_location = argc[2];
 	const fs::path base_save_location = save_location;
 

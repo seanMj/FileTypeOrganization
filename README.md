@@ -9,12 +9,14 @@ thought something like this could be used to do analysis of a system visually mu
 - The Program Ends (program runs relatively fast and without hassle. 
 
 To run program in command line: 
-> FileTypeOrganization <whereToLook> <WhereToSave>
+     FileTypeOrganization <whereToLook> <WhereToSave>
+    
+     Where To Look is where you want the program to find the files for searching through.
+     
+     Where To Look is where the program will save the organized file data. 
 
-Where To Look is where you want the program to find the files for searching through.
-Where To Look is where the program will save the organized file data. 
+
+not really done the way I like to write code, but im trying to impress a girl for the first time with my uniqueness of mind instead, and think this is how?
+
 
 [Warning, will not work in VS Debug mode... idk why yet]
-
-
-not really done the way i like to write code but im trying to impress a girl with my uniqueness, and i think this is how?

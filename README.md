@@ -22,7 +22,6 @@ To run program in command line:
      Where To Look is where the program will save the organized file data. 
 
 
-not really done the way I like to write code, but im trying to impress a girl for the first time with my uniqueness of mind instead, and think this is how?
-
+not really done the way I like to write code, but the reality is, I did it on a whim and It was before starsaver, but it was unwieldy in how I wrote it and adding to this wouldn't be that good of an idea. 
 
 [Warning, will not work in VS Debug mode... idk why yet]

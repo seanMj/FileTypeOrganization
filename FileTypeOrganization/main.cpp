@@ -1,3 +1,14 @@
+//by. Sean Jesky i hope this helps someone out there. Please use in a responsible way.. 
+/* 
+ * FILE('s): main.cpp
+ * DATE&TIME: feb 2023
+ * CREATED_BY: Sean Jesky (dumbest idiot on earth right now, I can promise that)
+ * CREATED_FOR: the dream
+ * WHAT_IT_DOES: searches system directory for a file that has symbols as in > **filename.txt
+                 This data is saved in users requested location. Segregation and organization of file extension type. 
+              
+ */
+
 #include <filesystem>
 namespace fs = std::filesystem;
 #include <exception>

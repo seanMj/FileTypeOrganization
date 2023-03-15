@@ -1,6 +1,11 @@
 # FileTypeOrganization (Runs on Windows And Linux without any changes)
 Organize a filesystem by file type, makes analysis of a system easier for people who need to quickly comb through a system that isn't their own, or people who just want to run a program for fun. 
 
+    Unlike the StarSaver program, this program will go through a 
+    directory of your choice and will organize all the files by file extension type,
+    and save those files within a choosen directory by the user instead of a searching for
+    A specific filename and then organize by type. Ones general, the other is more specific. 
+
 thought something like this could be used to do analysis of a system visually much easier
 
 - enter program name, and a source location (where you wish to look) and the destination (where you wish to save)

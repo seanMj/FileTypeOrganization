@@ -32,10 +32,10 @@ const inline vector<fs::path> collect_relivant_files(const fs::path& directory)
 	std::vector<fs::path>* p_files = &files;
 	files.reserve(5000000);
 	try {
-		for (const fs::directory_entry& directory : fs::recursive_directory_iterator{ directory })
+		for (const fs::directory_entry& dir : fs::recursive_directory_iterator{ directory })
 		{
-			if (!fs::is_empty(directory)) {
-				const fs::path& file_path = directory;
+			if (!fs::is_empty(dir)) {
+				const fs::path& file_path = dir;
 				const fs::path* file_path_p = &file_path;
 
 				if (!fs::is_directory(*file_path_p) && fs::file_size(file_path) > 0)
@@ -86,7 +86,7 @@ const inline vector<fs::path> get_extensions(vector<fs::path>* collected_data)
 	//sort the data by alpha. order.
 	std::sort(p_types->begin(), p_types->end());
 	//go through the sorted vector one by one:
-	for (int i = 0; i != p_types->size(); ++i)
+	for (decltype(p_types->size()) i = 0; i != p_types->size(); ++i)
 	{
 		//if the value from the vector doesn't repeat itself..  fix ERROR
 		if ((*(p_types))[i] != (*(p_types))[i - 1])
@@ -106,7 +106,7 @@ inline void create_directory_from_extension_type(const fs::path& base_save_locat
 	//vector<fs::path> save_location;
 	for (auto& i : extensions)	//go through extension types presented from prev. function.
 	{
-		fs::create_directory(base_save_location.string() + i.string());		//create dir based on extensions
+		fs::create_directory((base_save_location.string()) + i.string().erase(0,1));		//create dir based on extensions
 	}
 }
 void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, vector<fs::path>* extensions)
@@ -126,7 +126,6 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 					try
 					{
 						//copy files to new location that are based on its extension
-						//FIXED: hidden Directory bug
 						fs::copy(files, (dest.string() + ext.string().erase(0,1)), fs::copy_options::recursive | fs::copy_options::update_existing);
 						//create the filename destination and save location to be used by the functions below:
 						const fs::path core_path = dest.string() + ext.string();
@@ -160,8 +159,9 @@ int main(int argv, char* argc[])
 	std::string copy_from = argc[1];
 	const fs::path path_to_copy_from = copy_from;
 
-	//also added dynamic memory because why not its not like ill forget...
+	//const fs::path path_to_copy_from = "";
 	vector<fs::path>* p_files = new vector<fs::path>;
+	//vector<fs::path>* p_files = &files;
 	*p_files = collect_relivant_files(path_to_copy_from);
 
 	vector<fs::path>* p_extn = new vector<fs::path>;

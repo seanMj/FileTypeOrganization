@@ -150,7 +150,7 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 	}
 }
 
-int main(int* argv, char* argc[])
+int main(int argv, char* argc[])
 {
 	//onlu using pointers when able for one simple reasion:
 	//im doing IO, so every bit, every second is relivant in this case.. which;

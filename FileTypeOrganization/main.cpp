@@ -126,6 +126,7 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 					try
 					{
 						//copy files to new location that are based on its extension
+						//FIXED: hidden Directory bug
 						fs::copy(files, (dest.string() + ext.string().erase(0,1)), fs::copy_options::recursive | fs::copy_options::update_existing);
 						//create the filename destination and save location to be used by the functions below:
 						const fs::path core_path = dest.string() + ext.string();
@@ -159,24 +160,26 @@ int main(int argv, char* argc[])
 	std::string copy_from = argc[1];
 	const fs::path path_to_copy_from = copy_from;
 
-	//const fs::path path_to_copy_from = "";
-	vector<fs::path> files;
-	vector<fs::path>* p_files = &files;
-	files = collect_relivant_files(path_to_copy_from);
+	//also added dynamic memory because why not its not like ill forget...
+	vector<fs::path>* p_files = new vector<fs::path>;
+	*p_files = collect_relivant_files(path_to_copy_from);
 
-	vector<fs::path> extn;
-	vector<fs::path>* p_extn = &extn;
-	extn = get_extensions(p_files);
+	vector<fs::path>* p_extn = new vector<fs::path>;
+	//vector<fs::path>* p_extn = &extn;
+	*p_extn = get_extensions(p_files);
 
 	std::string save_location = argc[2];
 	const fs::path base_save_location = save_location;
 
-	std::cout << "\n\nThere are:\t" << files.size() << " Files To Be Copied...\n";
-	std::cout << "\n\nThere are:\t" << extn.size() << " Extensions Directories To Be Created...\n";
+	std::cout << "\n\nThere are:\t" << p_files->size() << " Files To Be Copied...\n";
+	std::cout << "\n\nThere are:\t" << p_extn->size() << " Extensions Directories To Be Created...\n";
 
-	if (files.size() >= 1000) {
+	if (p_files->size() >= 1000) {
 		std::cout << "\n\nPlease Be Patient, There Are >= 1000 Files, Else, Press Ctrl + C To Quit Program.\n";
 	}
 	copy_relevent_files(base_save_location, p_files, p_extn);
+
+	delete p_files;
+	delete p_extn;
 	
 }

@@ -29,4 +29,8 @@ not really done the way I like to write code, but the reality is, I did it on a 
     TODO: fix bug when renaming files to thier new location... such sloppy code... idk i just started writing, didnt think about quality of code this time
     TODO: FIX...why are so many people using my codes... I didn't expect any of them to have >30 people so fast, meaning if the rate continues, i actually have to start and supporting these projects
     TODO: put up a way to make a few bucks if people want to donate.  
-    TODO: fix hidden file error in Linux (add .erase(0,1) to erase directories naming with a dot; .<extension> in front of name. 
+   
+   
+    FIXED:: fix hidden file error in Linux (add .erase(0,1) to erase directories naming with a dot; .<extension> in front of name. 
+    
+    

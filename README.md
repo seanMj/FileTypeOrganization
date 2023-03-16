@@ -25,3 +25,4 @@ To run program in command line:
 not really done the way I like to write code, but the reality is, I did it on a whim and It was before starsaver, but it was unwieldy in how I wrote it and adding to this wouldn't be that good of an idea. 
 
 [Warning, will not work in VS Debug mode... idk why yet]
+TODO: fix bug when renaming files to thier new location... such sloppy code... idk i just started writing, didnt think about quality of code this time

@@ -126,7 +126,7 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 					try
 					{
 						//copy files to new location that are based on its extension
-						fs::copy(files, dest.string() + ext.string(), fs::copy_options::recursive);
+						fs::copy(files, (dest.string() + ext.string().erase(0,1)), fs::copy_options::recursive | fs::copy_options::update_existing);
 						//create the filename destination and save location to be used by the functions below:
 						const fs::path core_path = dest.string() + ext.string();
 						const fs::path save_this = core_path.string() + "\\" + files.filename().string();
@@ -134,7 +134,7 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 						//rename all the files in their new location....after they have been copied, this should be rewritten with Multi-threads.
 						if (fs::exists(save_this))
 						{
-							fs::rename(save_this, save_at);
+							fs::rename(save_this, save_at.string());
 						}
 					}
 					//if an error occurs, print error in log file for later lookup if needed by user.

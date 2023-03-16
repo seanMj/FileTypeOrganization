@@ -32,5 +32,10 @@ not really done the way I like to write code, but the reality is, I did it on a 
    
    
     FIXED:: fix hidden file error in Linux (add .erase(0,1) to erase directories naming with a dot; .<extension> in front of name. 
+    FIXED:: Other Bugs related to program structure eg. shadowing parameters, and data types, decltype fixed one bug, so that was really cool
     
+    Compile: 
+    clang++ main.cpp -lstdc++fs --std=c++17 -Oz -s -o  FTO
     
+    Compile for bugs:
+    clang++ main.cpp -Wshadow -Wall -g  -lstdc++fs --std=c++17 -fsanitize=address -fsanitize=undefined -D_GLIBCXX_DEBUG

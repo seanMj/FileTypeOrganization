@@ -19,8 +19,6 @@ using std::string;
 #include <algorithm>
 #include  <fstream>
 using std::ofstream;
-#include <omp.h>
-#include <thread>
 
 /// @brief collect all files from the system to use as the data set for file organization
 /// @param directory 

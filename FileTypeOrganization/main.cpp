@@ -21,14 +21,14 @@ using std::string;
 using std::ofstream;
 
 /// @brief collect all files from the system to use as the data set for file organization
-/// @param directory 
-/// @return 
-const inline vector<fs::path> collect_relivant_files(const fs::path& directory)
+/// @param fs::path directory (const)
+/// @return vector of fs::path
+const inline vector<fs::path> collect_relivant_files(const fs::path directory)
 {
 
 	//save file names to files;
 	vector<fs::path>* p_vfiles = new std::vector<fs::path>;
-	p_vfiles->reserve(5000000);
+	p_vfiles->reserve(50'000);
 	try {
 		for (const fs::directory_entry& dir : fs::recursive_directory_iterator{ directory })
 		{
@@ -36,7 +36,7 @@ const inline vector<fs::path> collect_relivant_files(const fs::path& directory)
 				const fs::path& file_path = dir;
 				const fs::path* file_path_p = &file_path;
 
-				if (!fs::is_directory(*file_path_p) && fs::file_size(file_path) > 0)
+				if (!fs::is_directory(*file_path_p) && fs::file_size(*file_path_p) > 0)
 				{
 					if (file_path_p->has_extension())
 					{
@@ -60,9 +60,9 @@ const inline vector<fs::path> collect_relivant_files(const fs::path& directory)
 
 
 /// @brief get extensions based on file extensions within lookup directory and push back one of each to vector to exclude duplicates:
-/// @param collected_data 
-/// @return 
-const inline vector<fs::path> get_extensions(vector<fs::path>* collected_data)
+/// @param *collected_data (const)
+/// @return vector of fs::path
+const inline vector<fs::path> get_extensions(const vector<fs::path>* collected_data)
 {
 	std::vector<std::string>* p_types = new std::vector<std::string>;
 	//vector<string>* p_types = &extension_types;
@@ -93,7 +93,7 @@ const inline vector<fs::path> get_extensions(vector<fs::path>* collected_data)
 			//then place it in the new vector, this is the list that will create the dir.list to copy to
 			types_no_duplicates->push_back((*(p_types))[i]);
 			//print the extensions that will become the directories to copy to
-			std::cout << (*(p_types))[i] << '\t' << '\n';
+			std::cout << "[*]\t" <<  (*(p_types))[i] << '\t' << '\n';
 		}
 	}
 	delete p_types;
@@ -105,9 +105,9 @@ const inline vector<fs::path> get_extensions(vector<fs::path>* collected_data)
 
 
 /// @brief create a directory based off the extension type of files provided from a vector of pointers to fs::path extensions
-/// @param base_save_location 
-/// @param extensions 
-inline void create_directory_from_extension_type(const fs::path& base_save_location, const vector<fs::path>* extensions)
+/// @param fs::path base_save_location (const)
+/// @param vector<fs::path> *extensions (const)
+inline void create_directory_from_extension_type(const fs::path base_save_location, const vector<fs::path>* extensions)
 {
 	//vector<fs::path> save_location;
 	for (auto& i : (*(extensions)))	//go through extension types presented from prev. function.
@@ -118,10 +118,10 @@ inline void create_directory_from_extension_type(const fs::path& base_save_locat
 
 
 /// @brief copy files from the computer's filesystem into a directory for the user
-/// @param dest 
-/// @param files_to_copy 
-/// @param extensions 
-void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, vector<fs::path>* extensions)
+/// @param fs::path dest (const)
+/// @param vector<fs::path>* files_to_copy (const)
+/// @param vector<fs::path>* extensions (const)
+void copy_relevent_files(const fs::path dest, const vector<fs::path>* files_to_copy, const vector<fs::path>* extensions)
 {
 	//call function to create the directorys needed to copy to
 	create_directory_from_extension_type(dest, extensions);
@@ -141,13 +141,12 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 					{
 						//copy files to new location that are based on its extension
 						fs::copy(files, (core_path.string()), fs::copy_options::recursive | fs::copy_options::update_existing);
-	}
+					}
 					//if an error occurs, print error in log file for later lookup if needed by user.
 					catch (std::runtime_error& err)
 					{
 						ofstream logs_(dest.string() + "error.txt", std::ios::app);
 						logs_ << err.what() << "\n" << dest.string() + ext.string() << '\n';
-
 					}
 						//create the filename destination and save location to be used by the functions below:
 					const fs::path save_this = core_path.string() + "\\" + files.filename().string();
@@ -163,12 +162,16 @@ void copy_relevent_files(const fs::path dest, vector<fs::path>* files_to_copy, v
 	}
 }
 
+
+/// @brief (FTO Version 1.0) This program goes through a filesystem and gets file extensions, creates directories from those extensions, and copies files to the corresponding directory extension name 
+/// @param int argv 
+/// @param char *argc 
+/// @return 
 int main(int argv, char* argc[])
 {
-	//onlu using pointers when able for one simple reasion:
-	//im doing IO, so every bit, every second is relivant in this case.. which;
-	//i didnt add them until after i examined the output performance
-
+	//used dynamic memory alloc. because i wanted this to be as effecent as possible...
+	// turns out dynamic mem. is not so important when using the standard library filesystem
+	//TODO: add input checks for the user so we dont go all crazy with malformed input just in case.
 	const std::string copy_from = argc[1];
 	const fs::path path_to_copy_from = copy_from;
 
@@ -184,11 +187,11 @@ int main(int argv, char* argc[])
 	const std::string save_location = argc[2];
 	const fs::path base_save_location = save_location;
 
-	std::cout << "\n\nThere are:\t" << p_files->size() << " Files To Be Copied...\n";
-	std::cout << "\n\nThere are:\t" << p_extn->size() << " Extensions Directories To Be Created...\n";
+	std::cout << "\n[+] There are:\t" << p_files->size() << "\tFiles To Be Copied...\n";
+	std::cout << "[+] There are:\t" << p_extn->size() <<  "\tExtensions Directories To Be Created...\n";
 
 	if (p_files->size() >= 10'000) {
-		std::cout << "\n\nPlease Be Patient...\n";
+		std::cout << "\t\tPlease Be Patient...\n\n";
 	}
 	 //#pragma omp parallel
 		copy_relevent_files(base_save_location, p_files, p_extn);

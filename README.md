@@ -1,4 +1,6 @@
-# FileTypeOrganization (Runs on Windows And Linux without any changes)
+# FileTypeOrganization by. sean jesky
+
+(Runs on Windows And Linux without any changes within Main, just copy main into a project for Visual Studio, wont work otherwise..)
 Organize a filesystem by file type, makes analysis of a system easier for people who need to quickly comb through a system that isn't their own, or people who just want to run a program for fun. 
 
     Unlike the StarSaver program, this program will go through a 

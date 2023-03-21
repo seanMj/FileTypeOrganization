@@ -28,11 +28,7 @@ not really done the way I like to write code, but the reality is, I did it on a 
 
 [Warning, will not work in VS Debug mode... idk why yet]
 
-    TODO: fix bug when renaming files to thier new location... such sloppy code... idk i just started writing, didnt think about quality of code this time
-    TODO: FIX...why are so many people using my codes... I didn't expect any of them to have >30 people so fast, meaning if the rate continues, i actually have to start and supporting these projects
-    TODO: put up a way to make a few bucks if people want to donate.  
-   
-   
+    TODO:...why are so many people using my codes... I didn't expect any of them to have even >30 people so fast. I am, and will be supporting these projects in my free time (not studying, or taking care of my dad or the house...fml)
     FIXED:: fix hidden file error in Linux (add .erase(0,1) to erase directories naming with a dot; .<extension> in front of name. 
     FIXED:: Other Bugs related to program structure eg. shadowing parameters, and data types, decltype fixed one bug, so that was really cool
     

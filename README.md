@@ -21,7 +21,7 @@ To run program in command line:
     
      Where To Look is where you want the program to find the files for searching through.
      
-     Where To Look is where the program will save the organized file data. 
+     Where To Save is where the program will save the organized file data. 
 
 
 not really done the way I like to write code, but the reality is, I did it on a whim and It was before starsaver, but it was unwieldy in how I wrote it and adding to this wouldn't be that good of an idea. 
